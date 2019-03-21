@@ -12,7 +12,7 @@ public:
 
 	my_string& operator =(const my_string& str);
 	my_string& operator+=(const my_string& str);
-
+	
 	int compare(const my_string& str);
 	my_string substr(int start)const;
 	my_string substr(int start, int length)const;
@@ -24,4 +24,3 @@ public:
 	my_string(const char * string);
 	~my_string();
 };
-

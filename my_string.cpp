@@ -3,14 +3,8 @@
 using namespace std;
 
 
-void strcpy(char* out, char* in) {
-	while (*in) {
-		*out = *in;
-		out++;
-		in++;
-	}
-}
-my_string::my_string(const char* string)
+
+my_string::my_string(const char* string = NULL)
 {	
 	int strlen = 0;
 	if (!string) {
@@ -37,7 +31,7 @@ char& my_string::at(int index) const{
 char& my_string::operator[](int index) const{
 	return this->value[index];
 }
-ostream& operator << (ostream& output,my_string& string) {
+ostream& operator << (ostream& output,const my_string& string) {
 	for (int i = 0; i < string.size(); ++i) {
 		cout << string[i];
 	}
@@ -61,23 +55,29 @@ my_string& my_string ::operator = (const my_string& str) {
 	}
 	return *this;
 }
+
 my_string my_string::operator + (const my_string& str) {
 	my_string m3("");
 	m3.value = new char[this->length + str.length + 1];
 	int i = 0;
+	for (; i < this->length; ++i) {
+		m3.value[i] = this->value[i];
+	}
+	for (int j = 0; j < str.length; ++j, ++i) {
+		m3.value[i] = str.value[j];
+	}
+	m3.value[i] = 0;
 	return m3;
 	
-}//aaa
+}
+ostream& operator<<(ostream& out, const my_string& str) {
+	for (int i = 0; i < str.size(); ++i) {
+		out << str[i];
+	}
+	return out;
+}
 my_string::~my_string()
 {
 	delete[] this->value;
 }
 
-int main() {
-	my_string str("123");
-	str = "12321797412874918";
-	str = str + "123";
-	cout << str;
-	system("pause");
-	return 0;
-}
