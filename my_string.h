@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-using namespace std;
+
 class my_string
 {
 private:
@@ -24,7 +24,10 @@ public:
 	void insert(int index, const my_string &str);
 	my_string operator + (const my_string& str);
 	my_string(const char * string);
+
 	~my_string();
+	my_string(const my_string& str);
+	friend std::ostream& operator << (std::ostream& output, const my_string& string);
 };
 
-ostream& operator << (ostream& output, const my_string& string);
+std::ostream& operator << (std::ostream& output, const my_string& string);

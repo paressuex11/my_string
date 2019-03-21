@@ -1,4 +1,5 @@
 #include "my_string.h"
+#include<cstring>
 #include <iostream>
 using namespace std;
 
@@ -6,21 +7,29 @@ using namespace std;
 
 my_string::my_string(const char* string = NULL)
 {	
-	int strlen = 0;
 	if (!string) {
 		this->value = new char;
 		this->value[0] = 0;
 	}
-	while (string[strlen])
-		strlen ++;
-	this->length = strlen;
+	this->length = strlen(string);
 	
 	
-	this->value = new char[strlen + 1];
-	for (int i = 0; i < strlen; ++i) {
+	this->value = new char[this->length + 1];
+	size_t i = 0;
+	for (; i < this->length; ++i) {
 		this->value[i] = string[i];
-		this->value[i + 1] = 0;
+		
 	}
+	this->value[i] = 0;
+}
+my_string::my_string(const my_string& str) {
+	this->value = new char[str.length + 1];
+	this->length = str.length;
+	int i = 0;
+	for (; i < str.length; ++i) {
+		this->value[i] = str.value[i];
+	}
+	this->value[i] = 0;
 }
 int my_string::size() const{
 	return this->length;
@@ -32,9 +41,7 @@ char& my_string::operator[](int index) const{
 	return this->value[index];
 }
 ostream& operator << (ostream& output, const my_string& string) {
-	for (int i = 0; i < string.size(); ++i) {
-		cout << string[i];
-	}
+	output << string.value;
 	return output;
 }
 
@@ -57,18 +64,13 @@ my_string& my_string ::operator = (const my_string& str) {
 }
 
 my_string my_string::operator + (const my_string& str) {
-	my_string m3("");
+	my_string m3("1");
+	delete[] m3.value;
 	m3.value = new char[this->length + str.length + 1];
-	int i = 0;
-	for (; i < this->length; ++i) {
-		m3.value[i] = this->value[i];
-	}
-	for (int j = 0; j < str.length; ++j, ++i) {
-		m3.value[i] = str.value[j];
-	}
-	m3.value[i] = 0;
-	return m3;
+	m3.length = this->length + str.length;
 	
+	
+	return m3;
 }
 
 my_string::~my_string()
