@@ -67,7 +67,7 @@ my_string my_string::operator + (const my_string& str) {
 	int i = 0;
 	return m3;
 	
-}
+}//aaa
 my_string::~my_string()
 {
 	delete[] this->value;
