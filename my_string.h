@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 class my_string
 {
 private:
@@ -24,3 +26,5 @@ public:
 	my_string(const char * string);
 	~my_string();
 };
+
+ostream& operator << (ostream& output, const my_string& string);

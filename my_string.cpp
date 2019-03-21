@@ -31,7 +31,7 @@ char& my_string::at(int index) const{
 char& my_string::operator[](int index) const{
 	return this->value[index];
 }
-ostream& operator << (ostream& output,const my_string& string) {
+ostream& operator << (ostream& output, const my_string& string) {
 	for (int i = 0; i < string.size(); ++i) {
 		cout << string[i];
 	}
@@ -70,14 +70,10 @@ my_string my_string::operator + (const my_string& str) {
 	return m3;
 	
 }
-ostream& operator<<(ostream& out, const my_string& str) {
-	for (int i = 0; i < str.size(); ++i) {
-		out << str[i];
-	}
-	return out;
-}
+
 my_string::~my_string()
 {
 	delete[] this->value;
 }
+
 
