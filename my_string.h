@@ -4,7 +4,7 @@
 class my_string
 {
 private:
-	char* value;            
+	char* value; 
 public:
 	int size ()const;
 	char& at(int index)const;
@@ -24,7 +24,7 @@ public:
 	void insert(int index, const my_string &str);
 
 	my_string(const char * string);
-
+	my_string();
 	~my_string();
 	my_string(const my_string& str);
 	friend std::ostream& operator << (std::ostream& output, const my_string& string);
